@@ -1,11 +1,6 @@
 // Chrome's currently missing some useful cache methods,
 // this polyfill adds them.
-importScripts('serviceworker-cache-polyfill.js');
-
-
-
-
-
+import('%PUBLIC_URL%/serviceworker-cache-polyfill.js');
 // Here comes the install event!
 // This only happens once, when the browser sees this
 // version of the ServiceWorker for the first time.
@@ -18,14 +13,10 @@ self.addEventListener('install', function(event) {
       // And add resources to it
       return cache.addAll([
        'index.html',
-        'css.css',
-          'app.js'
-        
       ]);
     })
   );
 });
-
 
 //cache først og så snart den får adgang til internet. Så opdatere cachen så man hele tiden får det nyeste data.
 //cache falling back to network with frequent update
