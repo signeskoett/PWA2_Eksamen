@@ -12,7 +12,9 @@ class  Game extends Component {
              <hr/>
              {this.props.score}
              </div>
-             <div class="game"></div>
+             <div class="game">
+             <button onClick={this.props.submit}></button>
+             </div>
             </div>
         );
     }

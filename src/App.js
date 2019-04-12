@@ -13,16 +13,17 @@ class App extends Component {
     super();
     this.state = { 
       Allscores: [],
-      score: 0,
+      score: 4,
       sted: '',
       name: ''
     };
     this.LocationSubmit = this.LocationSubmit.bind(this);
     this.NameSubmit = this.NameSubmit.bind(this);
+    this.Addscore = this.Addscore.bind(this);
   }
 
   componentDidMount() {
-    db.table('Rankscore')
+    db.table('Score')
       .toArray()
       .then((Score) => {
         this.setState({ 
@@ -45,6 +46,21 @@ class App extends Component {
     history.push("/Game");
   }
 
+  Addscore() {
+    const score = {
+      name: this.state.name,
+      location: this.state.sted,
+      score: this.state.score
+    };
+    db.table('Score')
+      .add(score)
+      .then((id) => {
+        const newscore = [...this.state.Allscores, Object.assign({}, score, { id })];
+        this.setState({ Allscores: newscore });
+      });
+      history.push("/Rank");
+  }
+
   render() {
     return (
       <Router history={history}>
@@ -63,7 +79,8 @@ class App extends Component {
                          <Game {...props} 
                             location={this.state.sted} 
                             name={this.state.name} 
-                            score={this.state.score}></Game>}/>
+                            score={this.state.score}
+                            submit={this.Addscore}></Game>}/>
 
                 <Route exact path={'/Rank'}
                      render={(props) =>
