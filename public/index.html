@@ -11,30 +11,6 @@
   <body>
     <div id="root"></div>
   </body>
-  <script>
-    window.addEventListener("load", () => {
-      function handleNetworkChange(event) {
-      if (navigator.onLine) {
-        document.body.classList.remove("offline");
-      } else {
-        document.body.classList.add("offline");
-      }
-      }
-
-      window.addEventListener("online", handleNetworkChange);
-      window.addEventListener("offline", handleNetworkChange);
-      });
-
-
-      if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("%PUBLIC_URL%//sw.js")
-      .then(function(registration) {
-        console.log("Service Worker registered with scope:", registration.scope);
-      }).catch(function(err) {
-        console.log("Service worker registration failed:", err);
-      });
-      }
-      console.log("ServiceWorker registered sw.js");
-</script>
-<script src="%PUBLIC_URL%//sw_function.js"></script>
+  <script src="%PUBLIC_URL%/js.js"></script>
+  <script src="%PUBLIC_URL%//sw_function.js"></script>
 </html>
