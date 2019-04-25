@@ -43,3 +43,9 @@ self.addEventListener('fetch', function(event) {
 
 //it should check if the url exists in the cache, if so get the response from the cache, otherwise get it
 
+//For period sync event---->
+self.addEventListener('periodicsync', function(event) {
+  if (event.registration.tag == "periodicSync") {
+      console.log("Periodic event occurred: ", event);
+  }
+});

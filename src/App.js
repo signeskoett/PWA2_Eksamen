@@ -7,6 +7,8 @@ import Name from "./name";
 import Game from "./game";
 import history from './history';
 import Rankscore from './Rankscore';
+import Rank from './score';
+
 
 class App extends Component {
   constructor() {
@@ -59,6 +61,23 @@ class App extends Component {
         this.setState({ Allscores: newscore });
       });
       history.push("/Rank");
+  }
+
+  renderdata() {
+    if(!db.table('Score') === []) {
+      db.table('Score').foreach( e => {
+        let navn = e.name;
+        let lokation = e.location;
+        let nummer = e.score;
+        Rank.create({ 
+          name: navn, 
+          location: lokation, 
+          score: nummer})
+          .catch(err => console.log(err.errors))
+      });
+      db.table('Score').clear();
+      console.log(Rank.find()._rejectionHandler0)
+    }
   }
 
   render() {
