@@ -76,7 +76,6 @@ class App extends Component {
           .catch(err => console.log(err.errors))
       });
       db.table('Score').clear();
-      console.log(Rank.find()._rejectionHandler0)
     }
   }
 

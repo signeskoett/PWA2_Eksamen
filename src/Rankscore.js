@@ -1,21 +1,36 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
+import Rank from './score';
 
 class  Name extends Component {
 
     render() {
+        let check = document.getElementById('network').value;
         let list = [];
-
-        this.props.scores.forEach((elm) => {
-            list.push(
-            <li>
-                <p>Name: {elm.name}</p>
-                <p>Score: {elm.score}</p>
-                <p>Location: {elm.location}</p>
-                <hr/>
-            </li>
-            )
-        });
+        if (check === 'true') {
+            Rank.find()._rejectionHandler0.forEach((elm) => {
+                list.push(
+                <li>
+                    <p>Name: {elm.name}</p>
+                    <p>Score: {elm.score}</p>
+                    <p>Location: {elm.location}</p>
+                    <hr/>
+                </li>
+                )
+            });
+        } else if (check === 'false') {
+            this.props.scores.forEach((elm) => {
+                list.push(
+                <li>
+                    <p>Name: {elm.name}</p>
+                    <p>Score: {elm.score}</p>
+                    <p>Location: {elm.location}</p>
+                    <hr/>
+                </li>
+                )
+            });
+        }
+      
 
         return (
             <div>
