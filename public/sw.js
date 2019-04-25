@@ -1,3 +1,10 @@
+self.addEventListener('sync', function(event) {
+    if (event.tag == 'myFirstSync') {
+        event.waitUntil( d => {console.log('hey')});
+    }
+});
+
+
 // Chrome's currently missing some useful cache methods,
 // this polyfill adds them.
 import('%PUBLIC_URL%/serviceworker-cache-polyfill.js');

@@ -10,8 +10,21 @@
   </head>
   <body>
     <div id="root"></div>
+    <input id="network" value="false" />
   </body>
+  <script>  // Register your service worker:
+  navigator.serviceWorker.register('/sw.js');
+
+  // Then later, request a one-off sync:
+  navigator.serviceWorker.ready.then(function(swRegistration) {
+    return swRegistration.sync.register('myFirstSync');
+  });
+
+  </script>
   <script>
+
+
+
     window.addEventListener("load", () => {
       function handleNetworkChange(event) {
       if (navigator.onLine) {
@@ -27,7 +40,7 @@
 
 
       if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("%PUBLIC_URL%//sw.js")
+      navigator.serviceWorker.register("%PUBLIC_URL%/sw.js")
       .then(function(registration) {
         console.log("Service Worker registered with scope:", registration.scope);
       }).catch(function(err) {
@@ -36,5 +49,5 @@
       }
       console.log("ServiceWorker registered sw.js");
 </script>
-<script src="%PUBLIC_URL%//sw_function.js"></script>
+<script src="%PUBLIC_URL%/sw_function.js"></script>
 </html>
