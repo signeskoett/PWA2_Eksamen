@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import db from './db';
-import { Router, Route, Link, Switch } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 import Location from "./location";
 import Name from "./name";
@@ -83,6 +83,7 @@ class App extends Component {
     return (
       <Router history={history}>
       <div className="container">
+      {setInterval(() => navigator.onLine ? <intput value="true" /> : <intput value="false" />, 2000)}
           <Switch>
               <Route exact path={'/'}
                      render={(props) =>
