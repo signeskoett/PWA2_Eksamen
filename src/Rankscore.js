@@ -5,9 +5,9 @@ import Rank from './score';
 class  Name extends Component {
 
     render() {
-        let check = document.getElementById('network').value;
         let list = [];
-        if (check === 'true') {
+        if (navigator.onLine) {
+            this.renderdata();
             Rank.find()._rejectionHandler0.forEach((elm) => {
                 list.push(
                 <li>
@@ -18,7 +18,7 @@ class  Name extends Component {
                 </li>
                 )
             });
-        } else if (check === 'false') {
+        } else {
             this.props.scores.forEach((elm) => {
                 list.push(
                 <li>

@@ -13,7 +13,7 @@ class  Game extends Component {
              {this.props.score}
              </div>
              <div class="game">
-             <button onClick={this.props.submit}></button>
+             <button onClick={this.props.submit}>Check scores</button>
              </div>
             </div>
         );

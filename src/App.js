@@ -22,6 +22,7 @@ class App extends Component {
     this.LocationSubmit = this.LocationSubmit.bind(this);
     this.NameSubmit = this.NameSubmit.bind(this);
     this.Addscore = this.Addscore.bind(this);
+    this.renderdata = this.renderdata.bind(this);
   }
 
   componentDidMount() {
@@ -48,11 +49,11 @@ class App extends Component {
     history.push("/Game");
   }
 
-  Addscore() {
+  Addscore(d) {
     const score = {
-      name: this.state.name,
-      location: this.state.sted,
-      score: this.state.score
+      name: d.name,
+      location: d.sted,
+      score: d.score
     };
     db.table('Score')
       .add(score)
@@ -60,7 +61,7 @@ class App extends Component {
         const newscore = [...this.state.Allscores, Object.assign({}, score, { id })];
         this.setState({ Allscores: newscore });
       });
-      history.push("/Rank");
+      history.push(`/Rank/${d.score}`);
   }
 
   renderdata() {
@@ -83,7 +84,6 @@ class App extends Component {
     return (
       <Router history={history}>
       <div className="container">
-      {setInterval(() => navigator.onLine ? <intput value="true" /> : <intput value="false" />, 2000)}
           <Switch>
               <Route exact path={'/'}
                      render={(props) =>
@@ -101,9 +101,9 @@ class App extends Component {
                             score={this.state.score}
                             submit={this.Addscore}></Game>}/>
 
-                <Route exact path={'/Rank'}
+                <Route exact path={'/Rank/:score'}
                      render={(props) =>
-                         <Rankscore {...props} scores={this.state.Allscores}></Rankscore>}/>
+                         <Rankscore {...props} scor={props.match.params._id} scores={this.state.Allscores} renderdata={this.renderdata}></Rankscore>}/>
 
               <Route component={NotFound} />
           </Switch>
