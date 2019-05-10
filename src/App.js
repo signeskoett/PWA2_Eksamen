@@ -4,7 +4,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import NotFound from "./NotFound";
 import Location from "./location";
 import Name from "./name";
-import Game from "./game";
+import Game from "./NewGame";
 import history from './history';
 import Rankscore from './Rankscore';
 import Rank from './score';

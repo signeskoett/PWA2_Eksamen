@@ -25,3 +25,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* === GAME STYLING === */
+#gameboard{
+  margin: auto;
+  border: 1px solid #000;
+  background-color: #B3B3B3;
+  width: 600px;
+  height: 600px;
+  position: relative;
+  max-width: 100vw;
+  max-height: 65vh;
+  overflow: hidden;
+}
+
+#gameboard .spermcell{
+  position: absolute;
+  width: 65px;
+  backface-visibility: hidden;
+  perspective: 100;
+}
+#gameboard img.bad{
+  background-color: darkred;
+}
