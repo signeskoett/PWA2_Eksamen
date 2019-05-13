@@ -48,3 +48,11 @@ code {
 #gameboard img.bad{
   background-color: darkred;
 }
+
+.border_green {
+  border-top: solid 30px green;
+}
+
+.border_red {
+  border-top: solid 30px red;
+}
