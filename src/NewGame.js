@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import UUID from "uuid";
 import db from "./db";
+import history from './history';
 import GameCell from "./GameCell";
 
 class Game extends Component {
@@ -18,7 +19,7 @@ class Game extends Component {
                 badBalls: 7,
                 goodBallScore: 2,
                 badBallScore: -5,
-                time: 30,
+                time: 7,
             },
             currentScore: 0,
             timeLeft: 0,
@@ -26,17 +27,26 @@ class Game extends Component {
             balls: [],
             runInterval: {},
             cells: [],
+            name: '',
+            location: ''
         }
     };
 
     componentDidMount() {
+        if(this.props.location === '') {
+            history.push('/');
+        }
         this.setState({
             canvas: document.getElementById('gameboard'),
         })
-
+        this.setState({
+            name: this.props.name,
+            location: this.props.location,
+        })
         this.addCells();
         this.run();
     }
+
     getMovementVal = (max, min) => {
         return (Math.random() * (max - min) + min).toFixed(2) * ( Math.floor(Math.random()*2) === 1 ? 1 : -1 );
     }
@@ -129,7 +139,6 @@ class Game extends Component {
 
     run = () => {
         let root = this;
-
         this.gameTick();
         this.startTimer();
         setTimeout(function(){
@@ -197,19 +206,26 @@ class Game extends Component {
         this.setState({
             timeLeft: this.state.settings.time,
         })
-        let timerInterval = setInterval(function(){
-
+        this.timerInterval = setInterval(() => {
             if(root.state.timeLeft > 1){
                 root.setState({
                     timeLeft: root.state.timeLeft -= 1
                 });
-            } else{
+            } else {
                 root.setState({
                     timeLeft: "Slut",
                 })
-                clearInterval(this)
+                clearInterval(this.timerInterval)
                 root.endGame();
-            }
+                const score = {
+                    name: this.props.name,
+                    location: this.props.location,
+                    score: this.state.currentScore
+                  };
+                  db.table('Score').add(score);
+                  this.props.data();
+                  history.push(`/Rank/${this.props.name}/${this.state.currentScore}/${this.props.location}`);
+                }
         }, 1000 )
     };
 
@@ -217,14 +233,23 @@ class Game extends Component {
         return (
             <div>
                 <div class="score">
-                    {this.props.name}
+                    <p>
+                        {this.props.name}
+                    </p>
                     <hr/>
-                    {this.props.location}
+                    <p>
+                        {this.props.location}
+                    </p>
                     <hr/>
-                    {this.state.currentScore}
-                </div>
-                <div id={"timer"}>
-                    {this.state.timeLeft}
+                    <p>
+                        {this.state.currentScore}
+                    </p>
+                    <p>
+                        Time:
+                        <div id={"timer"}>
+                            {this.state.timeLeft}
+                        </div>
+                    </p>
                 </div>
                 <div ref={node => this.canvas = node}
                     id={"gameboard"} style={{height: 500 + 'px'}}>
@@ -241,20 +266,13 @@ class Game extends Component {
                         />
                     )}
                 </div>
-                <button onClick={this.props.submit}>Klik her?</button>
-
-
                 <div id={"score-1"} style={{display: "none"}}>
                 </div>
-
                 <div id={"score-2"} style={{display: "none"}}>
                 </div>
-
                 <div id={"score-3"} style={{display: "none"}}>
                 </div>
-
             </div>
-
         );
     }
 }

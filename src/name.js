@@ -4,14 +4,13 @@ class  Name extends Component {
 
     render() {
         return (
-            <div>
-                {this.props.l}
+            <div className="midt">
+            <h3>Location: {this.props.l}</h3>
                <form onSubmit={this.props.NameSubmit}>
-               <p>
-                   Name:
+                   <p>Name:</p>
                    <input name="name" type="text" />
-               </p>
-               <input value="Start" type="submit"/>
+                   <br/>
+                   <input value="Start" type="submit" className="submit"/>
                </form>
             </div>
         );

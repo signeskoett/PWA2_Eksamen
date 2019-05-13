@@ -22,7 +22,6 @@ class App extends Component {
     };
     this.LocationSubmit = this.LocationSubmit.bind(this);
     this.NameSubmit = this.NameSubmit.bind(this);
-    this.Addscore = this.Addscore.bind(this);
     this.renderdata = this.renderdata.bind(this);
     this.getData = this.getData.bind(this);
   }
@@ -32,6 +31,7 @@ class App extends Component {
     this.interval = setInterval(() => this.renderdata(), 5000);
     this.getData();
   }
+
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -74,21 +74,6 @@ class App extends Component {
     history.push("/Game");
   }
 
-  Addscore(d) {
-    const score = {
-      name: d.name,
-      location: d.sted,
-      score: d.score
-    };
-    db.table('Score')
-      .add(score)
-      .then((id) => {
-        const newscore = [...this.state.Allscores, Object.assign({}, score, { id })];
-        this.setState({ Allscores: newscore });
-      });
-      history.push(`/Rank/${d.score}`);
-  }
-
   renderdata() {
     if(navigator.onLine) {
       this.setState({
@@ -99,13 +84,15 @@ class App extends Component {
         online: false
       })
     }
-
-    if (navigator.onLine && !db.table('Score') === []) {
-      db.table('Score').foreach( e => {
-        let navn = e.name;
-        let lokation = e.location;
-        let nummer = e.score;
-        fetch(`${this.API_URL}/add`, {
+    if (navigator.onLine) {
+      db.table('Score').toArray()
+      .then((Score) => {
+        console.log(Score.length)
+        for (let i = 0; i < Score.length; i++) {
+          let navn = Score[i].name;
+          let lokation = Score[i].location;
+          let nummer = Score[i].score;
+          fetch(`${this.API_URL}add`, {
           method: 'POST',
           headers: {
               'Accept': 'application/json',
@@ -118,9 +105,10 @@ class App extends Component {
           })        
           })
           .catch(err => console.log(err));
-      });
+        }
       db.table('Score').clear();
       this.getData();
+      });
     }
   }
 
@@ -143,11 +131,16 @@ class App extends Component {
                             location={this.state.sted} 
                             name={this.state.name} 
                             score={this.state.score}
-                            submit={this.Addscore}></Game>}/>
+                            data={this.getData}></Game>}/>
 
-                <Route exact path={'/Rank/:score'}
+                <Route exact path={'/Rank/:name/:score/:location'}
                      render={(props) =>
-                         <Rankscore {...props} scor={props.match.params._id} scores={this.state.Allscores} renderdata={this.renderdata}></Rankscore>}/>
+                         <Rankscore {...props} 
+                         score={props.match.params.score}
+                         name={props.match.params.name} 
+                         location={props.match.params.location} 
+                         scores={this.state.Allscores} 
+                         renderdata={this.renderdata}></Rankscore>}/>
 
               <Route component={NotFound} />
           </Switch>
