@@ -83,9 +83,9 @@ class App extends Component {
       .then((Score) => {
         if (Score.length > 0 ) {
         for (let i = 0; i < Score.length; i++) {
-          let navn = Score[i].name;
-          let lokation = Score[i].location;
-          let nummer = Score[i].score;
+          let navn = Score[i].Name;
+          let lokation = Score[i].Location;
+          let nummer = Score[i].Score;
           fetch(`${this.API_URL}add`, {
           method: 'POST',
           headers: {

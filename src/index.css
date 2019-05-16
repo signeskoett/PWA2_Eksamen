@@ -102,7 +102,7 @@ code {
   list-style-type: none;
   padding: 5px;
   border-radius: 5px;
-  background-color: rgb(255,255,255,.7);
+  background-color: rgb(255,255,255,.9);
   width: 80%;
   margin: 0 auto 5px;
 }
@@ -120,4 +120,35 @@ code {
 .score_y .pic {
   width: 80%;
   margin: auto;
+}
+
+#install_btn {
+  border: solid 2px pink;
+  border-radius: 3px;
+  background-color: transparent;
+  padding: 1em;
+  text-transform: capitalize;
+  transition: .5s;
+  cursor: pointer;
+  margin: 1em auto;
+  position: fixed;
+  bottom: 10px;
+  left: 48%;
+  display: none;
+}
+.score {
+  padding: 5px;
+  background-color: rgb(255,255,255,.7);
+  border-radius: 5px;
+  width: 50%;
+  max-width:150px;
+  position:fixed;
+  right: 2%;
+  z-index:1;
+}
+
+#gameboard {
+  background-color: rgb(255,255,255,.7);
+  border-radius: 5px;
+  margin-top:50px;
 }

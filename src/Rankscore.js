@@ -5,13 +5,16 @@ class  Name extends Component {
 
     render() {
         let list = [];
+        let all_scores = this.props.scores.sort(function (a,b) {
+            return b.Score - a.Score
+        })
         for (let i = 0; i < this.props.scores.length; i ++ ) {
             list.push(
                 <li>
                     <h2>{i + 1}</h2>
-                    <p>Name: {this.props.scores[i].Name}</p>
-                    <p>Score: {this.props.scores[i].Score}</p>
-                    <p>Location: {this.props.scores[i].Location}</p>
+                    <p>Name: {all_scores[i].Name}</p>
+                    <p>Score: {all_scores[i].Score}</p>
+                    <p>Location: {all_scores[i].Location}</p>
                 </li>
             )
         };  

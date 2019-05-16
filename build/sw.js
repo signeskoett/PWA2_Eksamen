@@ -13,26 +13,24 @@ self.addEventListener('install', function(event) {
     caches.open('simple-sw-v1').then(function(cache) {
       // And add resources to it
       return cache.addAll([
-        "/static/css/main.4201631c.chunk.css",
-        "/static/js/main.fcd976d0.chunk.js",
-        "/static/js/main.fcd976d0.chunk.js.map",
-        "/static/js/runtime~main.a8a9905a.js",
-        "/static/js/runtime~main.a8a9905a.js.map",
-        "/static/js/2.52f50ea6.chunk.js",
-        "/static/js/2.52f50ea6.chunk.js.map",
+        "/static/css/main.chunk.css",
+        "/static/js/main.chunk.js",
+        "/static/js/main.chunk.js.map",
+        "/static/js/runtime~main.js",
+        "/static/js/runtime~main.js.map",
+        "/static/js/2.chunk.js",
+        "/static/js/2.chunk.js.map",
         "/index.html",
-        "/precache-manifest.7524edb0611e3e8f4ca778c7f757f6f6.js",
-        "/service-worker.js",
-        "/static/css/main.4201631c.chunk.css.map",
-        "/static/media/bg.d07805b2.png",
+        "/sw.js",
+        "/static/css/main.chunk.css.map",
         "/media/bg.png",
         "/assets/images/bad.gif",
         "/assets/images/good.gif",
+        "/assets/images/bad.png",
         "/assets/images/awesome.png",
         "/assets/images/medium.png",
-        "/assets/images/bad.png",
         "/assets/images/music.mp3",
-        "favicon.ico"
+        "/js.js"
       ]);
     })
   );
@@ -53,12 +51,3 @@ self.addEventListener('fetch', function(event) {
   );
 });
 //it should check if the url exists in the cache, if so get the response from the cache, otherwise get it
-
-//Backgroundsync
-self.addEventListener('sync', function(event) {
-  if (event.tag == 'myFirstSync') {
-    event.waitUntil(
-      console.log('Bk TIM')
-    );
-  }
-});
