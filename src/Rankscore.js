@@ -14,10 +14,26 @@ class  Name extends Component {
                     <p>Location: {this.props.scores[i].Location}</p>
                 </li>
             )
-        };    
+        };  
+         let pic = '';
+         let msg = '';
+        if (this.props.score > 50 ) {
+            pic = 'awesome';
+            msg='a designer baby';
+        } else if ( this.props.score > 25 ) {
+            pic = 'medium';
+            msg='an okay baby';
+        } else {
+            pic = 'bad';
+            msg='a retarded baby';
+        }
 
         return (
             <div className="rank">
+            <div className="score_y">
+            <h3>Congrats you got {msg}</h3>
+                <img src={'/assets/images/' + pic + '.png'} />
+            </div>
                 <div id="y_score">
                     <h3>Your score</h3>
                     <p>Name: {this.props.name}</p>

@@ -30,6 +30,7 @@ class App extends Component {
     this.renderdata();
     this.interval = setInterval(() => this.renderdata(), 5000);
     this.getData();
+    this.audioplayer.play();
   }
 
   componentWillUnmount() {
@@ -44,7 +45,6 @@ class App extends Component {
               this.setState({
                 Allscores: data
               });
-              console.log(data)
           })
           .catch(error => {
               console.error("Error when fetching: ", error);
@@ -115,6 +115,9 @@ class App extends Component {
     return (
       <Router history={history}>
       <div className={this.state.online ? "container border_green" : "container border_red"}>
+          <div>
+            <audio ref={node => this.audioplayer = node} src="/assets/images/music.mp3" autoPlay loop/>
+          </div>
           <Switch>
               <Route exact path={'/'}
                      render={(props) =>

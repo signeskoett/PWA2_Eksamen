@@ -19,7 +19,7 @@ class Game extends Component {
                 badBalls: 7,
                 goodBallScore: 2,
                 badBallScore: -5,
-                time: 7,
+                time: 30,
             },
             currentScore: 0,
             timeLeft: 0,
@@ -218,9 +218,9 @@ class Game extends Component {
                 clearInterval(this.timerInterval)
                 root.endGame();
                 const score = {
-                    name: this.props.name,
-                    location: this.props.location,
-                    score: this.state.currentScore
+                    Name: this.props.name,
+                    Location: this.props.location,
+                    Score: this.state.currentScore
                   };
                   db.table('Score').add(score);
                   this.props.data();

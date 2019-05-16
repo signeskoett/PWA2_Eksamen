@@ -89,10 +89,10 @@ code {
   margin: 1em;
 }
 
-#y_score {
+#y_score, .score_y {
   text-align: center;
   margin: 10px auto 0;
-  max-width: 200px;
+  max-width: 350px;
   padding: 5px;
   border-radius: 5px;
   background-color: rgb(255,255,255,.5);
@@ -103,7 +103,6 @@ code {
   padding: 5px;
   border-radius: 5px;
   background-color: rgb(255,255,255,.7);
-  /* border: 0; */
   width: 80%;
   margin: 0 auto 5px;
 }
@@ -116,4 +115,9 @@ code {
  .btn {
   margin: 10px auto;
   display: block;
- }
+}
+
+.score_y .pic {
+  width: 80%;
+  margin: auto;
+}
