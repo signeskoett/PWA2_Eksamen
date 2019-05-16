@@ -13,7 +13,21 @@ self.addEventListener('install', function(event) {
     caches.open('simple-sw-v1').then(function(cache) {
       // And add resources to it
       return cache.addAll([
-       '',
+        "/static/css/main.bb1b241a.chunk.css",
+        "/static/js/main.bad8e991.chunk.js",
+        "/static/js/main.bad8e991.chunk.js.map",
+        "/static/js/runtime~main.a8a9905a.js",
+        "/static/js/runtime~main.a8a9905a.js.map",
+        "/static/js/2.52f50ea6.chunk.js",
+        "/static/js/2.52f50ea6.chunk.js.map",
+        "/index.html",
+        "/precache-manifest.ee40c46e9de67b2da3b1d89abbcb5fbf.js",
+        "/service-worker.js",
+        "/static/css/main.bb1b241a.chunk.css.map",
+        "/static/media/bg.d07805b2.png",
+        "/media/bg.png",
+        "/assets/images/bad.gif",
+        "/assets/images/good.gif",
       ]);
     })
   );

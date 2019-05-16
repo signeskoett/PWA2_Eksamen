@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
+import history from './history';
 
 class  Name extends Component {
+    componentDidMount() {
+        if(this.props.l === '') {
+            history.push('/');
+        }
+    }
 
     render() {
         return (

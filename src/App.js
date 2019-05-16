@@ -79,15 +79,9 @@ class App extends Component {
       this.setState({
         online: true
       })
-    } else {
-      this.setState({
-        online: false
-      })
-    }
-    if (navigator.onLine) {
       db.table('Score').toArray()
       .then((Score) => {
-        console.log(Score.length)
+        if (Score.length > 0 ) {
         for (let i = 0; i < Score.length; i++) {
           let navn = Score[i].name;
           let lokation = Score[i].location;
@@ -106,9 +100,14 @@ class App extends Component {
           })
           .catch(err => console.log(err));
         }
-      db.table('Score').clear();
+        db.table('Score').clear();
+      }
       this.getData();
-      });
+      }).catch(er => console.log(er));
+    } else {
+      this.setState({
+        online: false
+      })
     }
   }
 

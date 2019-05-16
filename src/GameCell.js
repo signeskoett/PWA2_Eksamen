@@ -43,7 +43,7 @@ class GameCell extends Component {
     render() {
         return (
             <div style={this.getStyleString()} className={"spermcell"} onClick={this.clickEvent}>
-                <img src={"/assets/images/sperm.gif"} alt="" className={this.props.type}/>
+                <img src={`/assets/images/${this.props.type}.gif`} alt="" className={this.props.type}/>
             </div>
 
         );

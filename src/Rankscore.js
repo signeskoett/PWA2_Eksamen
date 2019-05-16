@@ -5,26 +5,26 @@ class  Name extends Component {
 
     render() {
         let list = [];
-            this.props.scores.forEach((elm) => {
-                list.push(
+        for (let i = 0; i < this.props.scores.length; i ++ ) {
+            list.push(
                 <li>
-                    <p>Name: {elm.Name}</p>
-                    <p>Score: {elm.Score}</p>
-                    <p>Location: {elm.Location}</p>
-                    <hr/>
+                    <h2>{i + 1}</h2>
+                    <p>Name: {this.props.scores[i].Name}</p>
+                    <p>Score: {this.props.scores[i].Score}</p>
+                    <p>Location: {this.props.scores[i].Location}</p>
                 </li>
-                )
-            });    
+            )
+        };    
 
         return (
-            <div>
-                <Link to={"/Name"}><button type="button">Try again</button></Link>
-                <div>
+            <div className="rank">
+                <div id="y_score">
                     <h3>Your score</h3>
                     <p>Name: {this.props.name}</p>
                     <p>Location: {this.props.location}</p>
                     <p>Score: {this.props.score}</p>
                 </div>
+                <Link to={"/Name"}><button type="button" className="btn">Try again</button></Link>
                 <ul>{list}</ul>
             </div>
         );
