@@ -11,8 +11,8 @@ body {
 #root {
   background-image: url('./bg.png');
   min-height: 100vh;
-  min-width: 100vw;
-  padding: 0;
+  min-width: 95vw;
+  padding: 0 0 5px 0;
   margin: 0 0 0 0;
   background-position: center;
   background-repeat: no-repeat;
@@ -123,27 +123,29 @@ code {
 }
 
 #install_btn {
-  border: solid 2px pink;
+  border: solid 2px #555;
   border-radius: 3px;
-  background-color: transparent;
+  background-color: pink;
   padding: 1em;
   text-transform: capitalize;
   transition: .5s;
   cursor: pointer;
   margin: 1em auto;
   position: fixed;
-  bottom: 10px;
-  left: 48%;
+  left: 1%;
+  bottom: 1%;
   display: none;
 }
-.score {
-  padding: 5px;
-  background-color: rgb(255,255,255,.7);
-  border-radius: 5px;
-  width: 50%;
-  max-width:150px;
+.score_et {
+  position:fixed;
+  left: 2%;
+  top: 1%;
+  z-index:1;
+}
+.score_to {
   position:fixed;
   right: 2%;
+  top: 1%;
   z-index:1;
 }
 

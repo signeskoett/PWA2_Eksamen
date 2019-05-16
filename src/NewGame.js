@@ -232,23 +232,16 @@ class Game extends Component {
     render() {
         return (
             <div>
-                <div class="score">
+                <div class="score_et">
                     <p>
-                        {this.props.name}
-                    </p>
-                    <hr/>
-                    <p>
-                        {this.props.location}
-                    </p>
-                    <hr/>
-                    <p>
-                        {this.state.currentScore}
-                    </p>
-                    <p>
-                        Time:
                         <div id={"timer"}>
-                            {this.state.timeLeft}
+                        <strong>Time:</strong> {this.state.timeLeft}
                         </div>
+                    </p>
+                </div>
+                <div class="score_to">
+                    <p>
+                        <strong>Score:</strong> {this.state.currentScore}
                     </p>
                 </div>
                 <div ref={node => this.canvas = node}
