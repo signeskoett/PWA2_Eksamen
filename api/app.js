@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 /****** Routes *****/
 //Fanger alle spørgsmål
 app.get(`/api/all`, (req, res) => {
-    Scoreboard.find()
+    Scoreboard.find().sort( {Score : 1})
     .exec()
     .then(result => {
         res.status(200).json(result);
